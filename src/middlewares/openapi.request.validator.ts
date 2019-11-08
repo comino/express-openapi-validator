@@ -156,8 +156,7 @@ export class RequestValidator {
   }
 
   private rejectUnknownQueryParams(query, schema) {
-    if (!schema.properties) return;
-    const knownQueryParams = new Set(Object.keys(schema.properties));
+    const knownQueryParams = schema.properties ? new Set(Object.keys(schema.properties)) : new Set();
     const queryParams = Object.keys(query);
     for (const q of queryParams) {
       if (!knownQueryParams.has(q)) {
